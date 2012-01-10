@@ -1,1 +1,23 @@
-/home/krikor/Dropbox/dotfiles/.gitconfig
+[user]
+    name="Kirk Haroutinian"
+    email="kharoutinian@gmail.com"
+
+[alias]
+    br = branch
+    ci = commit -m
+    cl = clone
+    co = checkout
+    cp = cherry-pick
+    dc = diff --cached
+    pu = push -u origin master
+    st = status
+    tree = log --graph --pretty=oneline --abbrev-commit --decorate
+    ui = update-index
+    wcw = whatchanged -p -w -B --color-words
+
+[color]
+    diff=auto
+    status=auto
+    branch=auto
+[core]
+	excludesfile = /home/krikor/.gitignore_global

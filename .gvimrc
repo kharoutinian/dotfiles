@@ -1,1 +1,1 @@
-/home/krikor/Dropbox/dotfiles/.gvimrc
+set vb t_vb=."

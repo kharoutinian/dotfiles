@@ -1,1 +1,0 @@
-/home/krikor/Dropbox/dotfiles/.vim
