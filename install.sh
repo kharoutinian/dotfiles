@@ -16,10 +16,11 @@ configfiles="\
 
 for f in $configfiles
 do
-    echo "ln -sf $PWD/$f $HOME/$f"
+    ln -sf $PWD/$f $HOME/$f
 done
 
 pushd $HOME/.vim
+mkdir bundle
 chmod +x ./update_bundles
 ./update_bundles
 popd
