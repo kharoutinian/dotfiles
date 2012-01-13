@@ -46,6 +46,8 @@ if [ $UID -ne 0 ]; then
     alias svim='sudo vim'
     alias umount='sudo umount'
     alias wireshark='sudo wireshark'
+else
+    alias sudo=''
 fi
 # }
 
@@ -71,6 +73,7 @@ fi
 # Program Specific aliases {
   alias am='alsamixer'
   alias chromium='chromium-browser --disk-cache-size=268435456 &'
+  alias chromium-browser='chromium'
   alias d='dropbox'
   alias dfs='dropbox filestatus'
   alias f='firefox-beta-bin'
