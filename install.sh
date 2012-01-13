@@ -1,4 +1,4 @@
-configfiles="\
+dotfiles="\
 .bash_aliases \
 .bash_functions \
 .bash_history \
@@ -14,7 +14,7 @@ configfiles="\
 .Xdefaults \
 .Xresources"
 
-for f in $configfiles
+for f in $dotfiles
 do
     ln -sf $PWD/$f $HOME/$f
 done
