@@ -57,13 +57,11 @@ fi
 export EDITOR="vim"
 
 # Enable tab completion and history in Python
-export PYTHONSTARTUP=/home/krikor/.pythonrc
+export PYTHONSTARTUP=$HOME/.pythonrc
 
 export PATH=.:$PATH
 export PATH=$HOME/Dropbox/scripts:$PATH
 export PATH=/usr/local/bin:$PATH
-export PATH=/usr/local/cuda/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
-export CPLUS_INCLUDE_PATH=/usr/local/cuda/include:$CPLUS_INCLUDE_PATH
 export LESSOPEN="|lesspipe.sh %s"
 
