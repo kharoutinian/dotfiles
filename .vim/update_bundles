@@ -46,14 +46,9 @@ require 'open-uri'
 bundles_dir = File.join(File.dirname(__FILE__), "bundle")
 
 FileUtils.cd(bundles_dir)
-puts FileUtils.pwd()
 
 puts "trashing everything (lookout!)"
-Dir["*"].each do |d|
-    puts d
-    FileUtils.rmtree d
-end
-
+Dir["*"].each {|d| FileUtils.rmtree d }
 
 git_bundles.each do |url|
   dir = url.split('/').last.sub(/\.git$/, '')
