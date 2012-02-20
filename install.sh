@@ -1,5 +1,5 @@
 dotfiles="\
-.bash_aliases \
+.aliases \
 .bash_functions \
 .bash_history \
 .bash_logout \
@@ -12,7 +12,12 @@ dotfiles="\
 .vim \
 .vimrc \
 .Xdefaults \
-.Xresources"
+.Xresources \
+.zshrc"
+
+# Install oh-my-zsh
+# must be run before .zshrc symlink is created
+curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 
 for f in $dotfiles
 do
