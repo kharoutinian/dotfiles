@@ -2,11 +2,12 @@
 require("awful")
 require("awful.autofocus")
 require("awful.rules")
+-- Widget and layout library
+require("wibox")
 -- Theme handling library
 require("beautiful")
 -- Notification library
 require("naughty")
-require("vicious")
 
 -- {{{ Variable definitions
 local home   = os.getenv("HOME")
@@ -14,11 +15,10 @@ local exec   = awful.util.spawn
 local sexec  = awful.util.spawn_with_shell
 
 -- Themes define colours, icons, and wallpapers
---beautiful.init("/usr/share/awesome/themes/default/theme.lua")
-beautiful.init(awful.util.getdir("config") .. "/themes/current/theme.lua")
+beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "gnome-terminal"
+terminal = "urxvt"
 browser = "chromium-browser"
 editor = os.getenv("EDITOR") or "gvim"
 editor_cmd = terminal .. " -e " .. editor
@@ -34,17 +34,17 @@ modkey = "Mod4"
 layouts =
 {
     awful.layout.suit.tile,
-    awful.layout.suit.floating,
+    awful.layout.suit.max,
+    awful.layout.suit.floating
+    --awful.layout.suit.tile.left,
+    --awful.layout.suit.tile.bottom,
+    --awful.layout.suit.tile.top,
     --awful.layout.suit.fair,
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.spiral,
     --awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
+    --awful.layout.suit.max.fullscreen,
     --awful.layout.suit.magnifier
-    --awful.layout.suit.tile.left,
-    --awful.layout.suit.tile.bottom,
-    --awful.layout.suit.tile.top,
 }
 -- }}}
 
@@ -53,7 +53,7 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4 }, s, layouts[1])
+    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
 end
 -- }}}
 
@@ -61,7 +61,7 @@ end
 -- Create a laucher widget and a main menu
 myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua" },
+   { "edit config", editor_cmd .. " " .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", awesome.quit }
 }
@@ -72,75 +72,13 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
+mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 -- }}}
 
 -- {{{ Wibox
---
--- {{{ Widgets configuration
---
--- {{{ Reusable separator
---separator = widget({ type = "imagebox" })
---separator.image = image(beautiful.widget_sep)
-local spacer         = widget({ type = "textbox", name = "spacer" })
-local separator      = widget({ type = "textbox", name = "separator" })
-spacer.text    = " "
-separator.text = " <span foreground='red'>•</span> "
--- }}}
-
--- {{{ CPU load 
-local cpuwidget = widget({ type = "textbox" })
-vicious.register(cpuwidget, vicious.widgets.cpu, "<span foreground='orange'>load: </span><span foreground='green'>$2%</span><span foreground='orange'> - </span><span foreground='green'>$3%</span><span foreground='orange'> - </span><span foreground='green'>$4%</span><span foreground='orange'> - </span><span foreground='green'>$5%</span>")
--- }}}
- 
--- {{{ CPU temperature
-local thermalwidget  = widget({ type = "textbox" })
-vicious.register(thermalwidget, vicious.widgets.thermal, "<span foreground='orange'>temp: </span><span foreground='green'>$1°C</span>", 20, "thermal_zone0")
--- }}}
-
--- {{{ Battery state
--- Widget icon
--- baticon       = widget({ type = "imagebox", name = "baticon" })
--- baticon.image = image(beautiful.widget_bat)
---local batwidget     = widget({ type = "textbox" })
---vicious.register(batwidget, vicious.widgets.bat, "<span foreground='orange'>bat: </span><span foreground='green'>$1$2%</span>", 60, "BAT0")
--- }}}
-
--- {{{ Mem Usage
--- Initialize widget
-memwidget = widget({ type = "textbox" })
--- Register widget
-vicious.register(memwidget, vicious.widgets.mem, "$1% ($2MB/$3MB)", 13)
--- }}}
-
--- {{{ Date and time
-local datewidget = widget({ type = "textbox" })
-vicious.register(datewidget, vicious.widgets.date, "<span foreground='green'>%a, %d.%m.%y - %H:%M</span>", 5)
--- }}}
-
--- {{{ Volume widget
-local volwidget = widget({ type = "textbox" })
-vicious.register(volwidget, vicious.widgets.volume, "<span foreground='orange'>vol:</span><span foreground='green'>$1%</span>", 1, 'PCM')
--- }}}
-
--- {{{ MPD
--- Initialize widget
-mpdwidget = widget({ type = "textbox" })
--- Register widget
-vicious.register(mpdwidget, vicious.widgets.mpd,
-    function (widget, args)
-        if args["{state}"] == "Stop" then 
-            return " - "
-        else 
-            return args["{Artist}"]..' - '.. args["{Title}"]
-        end
-    end, 10)
--- }}}
-
--- {{{ System tray
-systray = widget({ type = "systray" })
--- }}}
+-- Create a textclock widget
+mytextclock = awful.widget.textclock()
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -189,7 +127,7 @@ mytasklist.buttons = awful.util.table.join(
 
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
-    mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
+    mypromptbox[s] = awful.widget.prompt()
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     mylayoutbox[s] = awful.widget.layoutbox(s)
@@ -199,34 +137,35 @@ for s = 1, screen.count() do
                            awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
     -- Create a taglist widget
-    mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.label.all, mytaglist.buttons)
+    mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
 
     -- Create a tasklist widget
-    mytasklist[s] = awful.widget.tasklist(function(c)
-                                              return awful.widget.tasklist.label.currenttags(c, s)
-                                          end, mytasklist.buttons)
+    mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s })
-    -- Add widgets to the wibox - order matters
-    mywibox[s].widgets = {
-        {
-            mylauncher,
-            mytaglist[s],
-            mypromptbox[s],
-            layout = awful.widget.layout.horizontal.leftright
-        },
-        s == screen.count() and systray or nil,
-        spacer, datewidget,
-        --separator, batwidget,
-        separator, memwidget,
-        separator, cpuwidget,
-        --separator, mpdwidget,
-        spacer, mytasklist[s],
-        layout = awful.widget.layout.horizontal.rightleft
-    }
+
+    -- Widgets that are aligned to the left
+    local left_layout = wibox.layout.fixed.horizontal()
+    left_layout:add(mylauncher)
+    left_layout:add(mytaglist[s])
+    left_layout:add(mypromptbox[s])
+
+    -- Widgets that are aligned to the right
+    local right_layout = wibox.layout.fixed.horizontal()
+    if s == 1 then right_layout:add(wibox.widget.systray()) end
+    --right_layout:add(batwidget),
+    right_layout:add(mytextclock)
+    right_layout:add(mylayoutbox[s])
+
+    -- Now bring it all together (with the tasklist in the middle)
+    local layout = wibox.layout.align.horizontal()
+    layout:set_left(left_layout)
+    layout:set_middle(mytasklist[s])
+    layout:set_right(right_layout)
+
+    mywibox[s]:set_widget(layout)
 end
--- }}}
 -- }}}
 
 -- {{{ Mouse bindings
@@ -310,7 +249,7 @@ globalkeys = awful.util.table.join(
 
 
     -- Program Shortcuts
-    awful.key({ modkey,           }, "b",     function () sexec("thunar")                   end),
+    awful.key({ modkey,           }, "b",     function () sexec("pcmanfm")                   end),
     awful.key({ modkey,           }, "c",     function () sexec("chromium-browser")         end),
     awful.key({ modkey,           }, "p",     function () exec(terminal .. " -e python2")    end),
     awful.key({ modkey,           }, "v",     function () sexec("gvim")                     end),
@@ -396,7 +335,7 @@ awful.rules.rules = {
                      focus = true,
                      keys = clientkeys,
                      buttons = clientbuttons } },
-    { rule = { class = "xterm" },
+    { rule = { class = "urxvt" },
       properties = { opacity = 0.65 } },
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
@@ -412,12 +351,9 @@ awful.rules.rules = {
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
-client.add_signal("manage", function (c, startup)
-    -- Add a titlebar
-    -- awful.titlebar.add(c, { modkey = modkey })
-
+client.connect_signal("manage", function (c, startup)
     -- Enable sloppy focus
-    c:add_signal("mouse::enter", function(c)
+    c:connect_signal("mouse::enter", function(c)
         if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
             and awful.client.focus.filter(c) then
             client.focus = c
@@ -446,17 +382,12 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 do
     local cmds =
     {
-        'sudo g15daemon',
-        'udiskie',
+        'sudo nm-applet',
         'xcompmgr -c',
-        'mpd /home/krikor/.mpd/mpd.conf',
-        'mpdscribble',
-        'dropboxd',
         'redshiftgui --min',
-        'thunar --daemon',
-        'xrdb -merge /home/krikor/.Xresources',
         --'keepassx -min',
-        'g15mpd'
+        'xrdb -merge /home/krikor/.Xresources',
+        'dropbox start'
     }
 
     for _,i in pairs(cmds) do
