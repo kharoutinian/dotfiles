@@ -388,12 +388,11 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 do
     local cmds =
     {
-        --'xrdb -merge $HOME/.Xresources',
-        'sudo nm-applet',
+        'nm-applet --sm-disable',
         'xcompmgr -c',
         'redshiftgui --min',
-        'keepassx -min',
-        'dropbox start'
+        'keepassx -min -lock',
+        'xrdb -merge $HOME/.Xresources',
     }
 
     for _,i in pairs(cmds) do
