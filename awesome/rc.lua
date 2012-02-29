@@ -8,6 +8,7 @@ require("wibox")
 require("beautiful")
 -- Notification library
 require("naughty")
+require("vicious")
 
 -- {{{ Variable definitions
 local home   = os.getenv("HOME")
@@ -141,6 +142,11 @@ for s = 1, screen.count() do
 
     -- Create a tasklist widget
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
+
+    -- Create a battery widget
+    -- local batwidget = widget({type = "textbox"})
+    -- vicious.register(batwidget, vicious.widgets.bat, "$1$2", 60, "BAT0")
+
 
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s })
@@ -382,11 +388,11 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 do
     local cmds =
     {
+        --'xrdb -merge $HOME/.Xresources',
         'sudo nm-applet',
         'xcompmgr -c',
         'redshiftgui --min',
-        --'keepassx -min',
-        'xrdb -merge /home/krikor/.Xresources',
+        'keepassx -min',
         'dropbox start'
     }
 

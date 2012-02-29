@@ -98,7 +98,7 @@ set matchtime=2 " how many tenths of a second to blink matching brackets for
 set hlsearch " highlight searched for phrases
 set nostartofline " leave my cursor where it was
 set novisualbell " don't blink
-set relativenumber " turn on line numbers
+set number " turn on line numbers
 set report=0 " tell us when anything is changed via :...
 set ruler " Always show current positions along the bottom
 set scrolloff=10 " Keep 10 lines (top/bottom) for scope
@@ -248,7 +248,6 @@ if has("gui_running")
     set guioptions-=L  " Get rid of the left scroll bar
     set guioptions-=r  " Get rid of the right scroll bar
     set guioptions-=T  " Get rid of the GUI buttons
-    set relativenumber  " Show the number of lines away from the current line
     " instead of the absolute line number
     " Spell check comments
     set spell spelllang=en_us
