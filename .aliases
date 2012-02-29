@@ -122,11 +122,11 @@ fi
 # }
 
 # Configuration files {
-  alias ba='gvim ~/.bash_aliases'
   alias bfun='gvim ~/.bash_functions'
   alias brc='gvim ~/.bashrc'
-  alias prc='gvim ~/.pentadactylrc'
   alias vrc='gvim ~/.vimrc'
+  alias za='gvim ~/.aliases'
+  alias ba='za'
 
   alias fstab='sudo vim /etc/fstab'
   alias arc='gvim ~/.config/awesome/rc.lua'
@@ -153,3 +153,6 @@ fi
   fi
 # }
 
+# Development shortcuts {
+  alias cscopefiles='find $(pwd) -name "*.c" -o -name "*.cpp" -o -name "*.h" > $(pwd)/cscope.files'
+# }
