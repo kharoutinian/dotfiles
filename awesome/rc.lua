@@ -341,8 +341,8 @@ awful.rules.rules = {
                      focus = true,
                      keys = clientkeys,
                      buttons = clientbuttons } },
-    { rule = { class = "urxvt" },
-      properties = { opacity = 0.65 } },
+    { rule = { class = "rxvt-unicode" },
+      properties = { opacity = 0.75 } },
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
     { rule = { class = "pinentry" },
@@ -389,10 +389,8 @@ do
     local cmds =
     {
         'nm-applet --sm-disable',
-        'xcompmgr -c',
         'redshiftgui --min',
         'keepassx -min -lock',
-        'xrdb -merge $HOME/.Xresources',
     }
 
     for _,i in pairs(cmds) do

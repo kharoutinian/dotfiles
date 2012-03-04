@@ -5,6 +5,7 @@ dotfiles="\
     .bash_logout \
     .bash_profile \
     .bashrc \
+    .guile \
     .gitconfig \
     .gitignore_global \
     .gvimrc \
@@ -13,6 +14,7 @@ dotfiles="\
     .vimrc \
     .Xdefaults \
     .Xresources \
+    .zprofile\
     .zshrc\
     "
 

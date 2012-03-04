@@ -40,9 +40,9 @@ if [ $UID -ne 0 ]; then
     alias root='sudo su'
     alias scat='sudo cat'
     alias sgvim='sudo vim'
-    alias shalt='sudo halt'
+    alias halt='sudo halt'
     alias smv='sudo mv'
-    alias sreboot='sudo reboot'
+    alias reboot='sudo reboot'
     alias svim='sudo vim'
     alias umount='sudo umount'
     alias wireshark='sudo wireshark'
@@ -83,7 +83,6 @@ fi
   alias fahstop='sudo /etc/rc.d/foldingathome-smp stop'
   alias firefox='firefox-beta-bin'
   alias g='git'
-  alias gv='gvim'
   alias mpdstart='(mpd ~/.mpd/mpd.conf && mpdscribble &)'
   alias mt='mpc toggle'
   alias pacman='sudo pacman-color'
@@ -91,17 +90,13 @@ fi
   alias um='udiskie-umount -a'
   alias pu='pacman -Syu'
   alias s='sudo pm-suspend'
-  alias v='vim'
   alias wget='wget --trust-server-names'
   alias y='yaourt'
   alias yu='yaourt -Syuab --noconfirm'
 # }
 
-# Typos be gone! {
-  alias vm='mv'
-# }
-
 # SSH and SFTP Shortcuts {
+  alias ssh='eval $(/usr/bin/keychain --eval --agents ssh -Q --quiet .ssh/id_rsa) && ssh'
   alias sftpdreamhost='sftp kharoutinian@provenzano.dreamhost.com'
   alias sftpmongo='sftp -P 1984 krikor@spiderman.homeftp.net'
   alias sftpmongol='sftp -P 1984 krikor@mongo'
@@ -112,24 +107,23 @@ fi
   alias sml='sshmongol'
   alias sm='sshmongo'
 
+  alias mm='sshfs root@openwrt:/mnt/sda1/media/music ~/music -C -p 1984'
+  alias umm='fusemount -u ~/music'
+
   alias sftp47='sftp phatarmo@pc47.cs.ucdavis.edu'
-  alias ssh18='ssh -X phatarmo@pc18.cs.ucdavis.edu'
-  alias ssh22='ssh -X phatarmo@pc22.cs.ucdavis.edu'
-  alias ssh46='ssh -X phatarmo@pc46.cs.ucdavis.edu'
   alias ssh47='ssh -X phatarmo@pc47.cs.ucdavis.edu'
-  alias ssh48='ssh -X phatarmo@pc48.cs.ucdavis.edu'
   alias sshtetra='ssh -X phatarmo@tetra.cs.ucdavis.edu'
 # }
 
 # Configuration files {
-  alias bfun='gvim ~/.bash_functions'
   alias brc='gvim ~/.bashrc'
   alias vrc='gvim ~/.vimrc'
   alias za='gvim ~/.aliases'
   alias ba='za'
 
-  alias fstab='sudo vim /etc/fstab'
   alias arc='gvim ~/.config/awesome/rc.lua'
+  alias fstab='sudo vim /etc/fstab'
+  alias rc='svim /etc/rc.conf'
 # }
 
 # Distro Specific aliases {

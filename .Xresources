@@ -19,6 +19,10 @@
 *color15:    rgb:f8/fc/f8
 
 URxvt.depth: 32
-URxvt.background: 1111/1111/1111/dddd
+!URxvt.background: 1111/1111/1111/dddd
 URxvt.scrollBar: off
 URxvt*termName:screen-256color
+
+URxvt.transparent: true
+! URxvt.shading: 0 to 99 darkens, 101 to 200 lightens
+URxvt.shading: 15

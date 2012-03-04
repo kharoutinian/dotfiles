@@ -1,0 +1,16 @@
+(use-modules (ice-9 readline))
+(activate-readline)
+
+
+;Global function defs
+
+(define atom?
+  (lambda (x)
+    (and (not (pair? x)) (not (null? x)))))
+
+(define lat?
+  (lambda (l)
+    (cond
+      ((null? #t)
+      ((atom? (car l) (lat? (cdr l)))
+      (else #f))))))
