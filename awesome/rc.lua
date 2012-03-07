@@ -388,6 +388,7 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 do
     local cmds =
     {
+        'batterymon -t 24x24_wide -n 5',
         'nm-applet --sm-disable',
         'redshiftgui --min',
         'keepassx -min -lock',

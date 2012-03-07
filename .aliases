@@ -108,7 +108,7 @@ fi
   alias sm='sshmongo'
 
   alias mm='sshfs root@openwrt:/mnt/sda1/media/music ~/music -C -p 1984'
-  alias umm='fusemount -u ~/music'
+  alias umm='sudo umount ~/music'
 
   alias sftp47='sftp phatarmo@pc47.cs.ucdavis.edu'
   alias ssh47='ssh -X phatarmo@pc47.cs.ucdavis.edu'

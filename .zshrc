@@ -37,7 +37,7 @@ if [[ -a .aliases ]]; then
 fi
 
 # Customize to your needs...
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/share/java/apache-ant/bin:/usr/bin/vendor_perl:/usr/bin/core_perl
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/share/java/apache-ant/bin:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/Dropbox/scripts
 
 # Key Bindings
 bindkey "\e[1~" beginning-of-line # Home

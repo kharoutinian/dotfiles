@@ -234,7 +234,6 @@ if has("gui_running")
     " Basics {
     set columns=85 " View one file.
     set background=dark
-    "colorscheme solarized
     colorscheme vividchalk
     set mousehide " hide the mouse cursor when typing
     set vb t_vb=".
