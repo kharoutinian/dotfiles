@@ -1,6 +1,5 @@
 # Make built-in commands a little more user friendly {
   alias c='cd'
-  alias ct='cleartool'
   alias df='df -h'
   alias du='du -csh'
   alias grep='grep -n --color=auto'
@@ -14,12 +13,12 @@
   alias lx='ll -BX'                   # sort by extension
   alias lz='ll -rS'                   # sort by size
   alias lt='ll -rt'                   # sort by date
-  alias lm='la | more'
+  alias lm='la | less'
   alias mkdir='mkdir -p -v'
   alias more='less'
   alias ping='ping -c 3'
 
-  alias gcc='gcc -std=gnu99'
+  alias gcc='gcc -std=gnu99 -Wall'
 # }
 
 # Make some new useful commands {
@@ -67,27 +66,17 @@ fi
   alias ....='cd ../../..'
   alias .....='cd ../../../..'
   alias cdd='cd ~/Dropbox'
-  alias cds='cd ~/Dropbox/school'
 # }
 
 # Program Specific aliases {
   alias am='alsamixer'
-  alias chromium='chromium-browser --disk-cache-size=268435456 &'
-  alias chromium-browser='chromium'
   alias d='dropbox'
   alias dfs='dropbox filestatus'
-  alias f='firefox-beta-bin'
-  alias fah='/opt/fah-smp/fah6 &'
-  alias fah_gpu='sudo /etc/rc.d/foldingathome-gpu start'
-  alias fahstart='sudo /etc/rc.d/foldingathome-smp start'
-  alias fahstop='sudo /etc/rc.d/foldingathome-smp stop'
-  alias firefox='firefox-beta-bin'
   alias g='git'
   alias mpdstart='(mpd ~/.mpd/mpd.conf && mpdscribble &)'
   alias mt='mpc toggle'
   alias pacman='sudo pacman-color'
   alias pm='pacman'
-  alias um='udiskie-umount -a'
   alias pu='pacman -Syu'
   alias s='sudo pm-suspend'
   alias wget='wget --trust-server-names'
@@ -98,21 +87,15 @@ fi
 # SSH and SFTP Shortcuts {
   alias ssh='eval $(/usr/bin/keychain --eval --agents ssh -Q --quiet .ssh/id_rsa) && ssh'
   alias sftpdreamhost='sftp kharoutinian@provenzano.dreamhost.com'
-  alias sftpmongo='sftp -P 1984 krikor@spiderman.homeftp.net'
-  alias sftpmongol='sftp -P 1984 krikor@mongo'
+  alias sftplimbo='sftp -P 1984 krikor@spiderman.homeftp.net'
+  alias sftplimbol='sftp -P 1984 krikor@mongo'
   alias sftpwrt='sftp -P 1984 root@192.168.1.1'
   alias sshdreamhost='ssh kharoutinian@provenzano.dreamhost.com'
-  alias sshmongol='ssh -X -p 1984 krikor@mongo'
+  alias sshlimbol='ssh -X -p 1984 krikor@mongo'
   alias sshwrt='ssh -p 1984 root@192.168.1.1'
-  alias sml='sshmongol'
-  alias sm='sshmongo'
 
   alias mm='sshfs root@openwrt:/mnt/sda1/media/music ~/music -C -p 1984'
   alias umm='sudo umount ~/music'
-
-  alias sftp47='sftp phatarmo@pc47.cs.ucdavis.edu'
-  alias ssh47='ssh -X phatarmo@pc47.cs.ucdavis.edu'
-  alias sshtetra='ssh -X phatarmo@tetra.cs.ucdavis.edu'
 # }
 
 # Configuration files {
@@ -123,7 +106,7 @@ fi
 
   alias arc='gvim ~/.config/awesome/rc.lua'
   alias fstab='sudo vim /etc/fstab'
-  alias rc='svim /etc/rc.conf'
+  alias rc='suod vim /etc/rc.conf'
 # }
 
 # Distro Specific aliases {
@@ -133,7 +116,7 @@ fi
     # Arch Linux specific
     alias diff='colordiff'        # Requires colordiff package
     alias update='sudo pacman -Syy'
-    alias upgrade='sudo pacman -Su'
+    alias upgrade='yu' # update everything with yaourt
     alias wicd='wicd-curses'
     export PACMAN=pacman-color
   else

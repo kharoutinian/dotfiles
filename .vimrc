@@ -248,7 +248,8 @@ if has("gui_running")
     if osys == "windows"
         set guifont=Consolas
     else
-        set guifont=Inconsolata\ Medium\ 11
+        "set guifont=Inconsolata\ Medium\ 11
+        set guifont=DejaVu\ Sans\ Mono\ 10
         " Change console window title bar to the name of the buffer being edited.
         auto BufEnter * let &titlestring="VIM - ".expand("%:p")
     endif
