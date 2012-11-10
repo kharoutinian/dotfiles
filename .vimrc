@@ -36,15 +36,9 @@ set autochdir " always switch to the current file directory
 set backspace=indent,eol,start " make backspace a more flexible
 set backup " make backup files
 set undofile  " Enables infinite undo even after buffer is closed.
-if osys == "windows"
-    set backupdir=$HOME/vim/backup " where to put backup files
-    set directory=$HOME/vim/tmp " directory to place swap files in
-    set undodir=$HOME/vim/undo " Directory to save undo files in
-else
-    set backupdir=~/.vim/backup " where to put backup files
-    set directory=~/.vim/tmp " directory to place swap files in
-    set undodir=~/.vim/undo " Directory to save undo files in
-endif
+set backupdir=~/.vim/backup " where to put backup files
+set directory=~/.vim/tmp " directory to place swap files in
+set undodir=~/.vim/undo " Directory to save undo files in
 set clipboard+=unnamed " share windows clipboard
 set fileformats=unix,dos,mac " support all three, in this order
 set hidden " you can change buffers without saving
@@ -95,10 +89,10 @@ set lazyredraw " do not redraw while running macros
 set list " show whitespace
 set listchars=tab:>-,trail:- " show tabs and trailing
 set matchtime=2 " how many tenths of a second to blink matching brackets for
-set hlsearch " highlight searched for phrases
+set hlsearch
 set nostartofline " leave my cursor where it was
 set novisualbell " don't blink
-set number " turn on line numbers
+set relativenumber
 set report=0 " tell us when anything is changed via :...
 set ruler " Always show current positions along the bottom
 set scrolloff=10 " Keep 10 lines (top/bottom) for scope
