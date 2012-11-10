@@ -12,14 +12,9 @@ dotfiles="\
     .pythonrc \
     .vim \
     .vimrc \
-    .Xdefaults \
     .Xresources \
     .zprofile\
     .zshrc\
-    "
-
-config_dirs="\
-    awesome\
     "
 
 # Install oh-my-zsh
@@ -31,13 +26,11 @@ do
     ln -sf $PWD/$f $HOME/$f
 done
 
-for f in $config_dirs
-do
-    ln -sf $PWD/$f $HOME/.config/$f
-done
-
 
 pushd $HOME/.vim
+mkdir backup
+mkdir undo
+mkdir tmp
 mkdir bundle
 chmod +x ./update_bundles
 ./update_bundles

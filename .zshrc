@@ -29,7 +29,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(archlinux git)
+plugins=(archlinux extract git pip python)
 
 source $ZSH/oh-my-zsh.sh
 if [[ -a .aliases ]]; then
@@ -40,18 +40,21 @@ fi
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/share/java/apache-ant/bin:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/Dropbox/scripts
 
 # Key Bindings
-bindkey "\e[1~" beginning-of-line # Home
-bindkey "\e[4~" end-of-line # End
-bindkey "\e[5~" beginning-of-history # PageUp
-bindkey "\e[6~" end-of-history # PageDown
-bindkey "\e[2~" quoted-insert # Ins
-bindkey "\e[3~" delete-char # Del
-bindkey "\e[5C" forward-word
-bindkey "\e[5D" backward-word
-bindkey "\e[Z" reverse-menu-complete # Shift+Tab
-# for rxvt
-bindkey "\e[7~" beginning-of-line # Home
-bindkey "\e[8~" end-of-line # End
+#bindkey "\e[1~" beginning-of-line # Home
+#bindkey "\e[4~" end-of-line # End
+#bindkey "\e[5~" beginning-of-history # PageUp
+#bindkey "\e[6~" end-of-history # PageDown
+#bindkey "\e[2~" quoted-insert # Ins
+#bindkey "\e[3~" delete-char # Del
+#bindkey "\e[5C" forward-word
+#bindkey "\e[5D" backward-word
+#bindkey "\e[Z" reverse-menu-complete # Shift+Tab
 # History serch
-bindkey "^[[A" history-beginning-search-backward
-bindkey "^[[B" history-beginning-search-forward
+#bindkey "^[[A" history-beginning-search-backward
+#bindkey "^[[B" history-beginning-search-forward
+
+
+export TERM='xterm-256color'
+export EDITOR='vim'
+
+setopt VI
