@@ -32,6 +32,5 @@ mkdir backup
 mkdir undo
 mkdir tmp
 mkdir bundle
-chmod +x ./update_bundles
-./update_bundles
+python ./vim_update.py
 popd

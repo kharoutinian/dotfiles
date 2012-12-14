@@ -3,11 +3,9 @@
 # A script to download the newest version of vim plugins from github and
 # unpack them to the correct directory
 
-# requires gitpython to be installed
-
-import git
 import os
 import shutil
+import subprocess
 import sys
 
 git_bundle = [
@@ -49,7 +47,7 @@ def update_git_repo(clone_path):
         repo.remote().pull()
     else:
         print 'Cloning {}'.format(repo_name)
-        git.Git().clone(clone_path)
+        print subprocess.check_output(['git', 'clone', clone_path])
 
 
 def main():
